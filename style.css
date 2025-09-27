@@ -719,9 +719,6 @@ nav .logo img {
 }
 
 
-
-/* Sponsors Section */
-
 #sponsors {
   text-align: center;
   padding: 50px 20px;
@@ -780,7 +777,6 @@ nav .logo img {
     font-size: 14px;
   }
 }
-
 
 
 
@@ -1957,6 +1953,4 @@ header{
     transform: translateY(100vh); /* fall down */
     opacity: 0.8;
   }
-
 }
-
