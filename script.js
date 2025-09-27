@@ -700,3 +700,42 @@ scrollContainer.addEventListener('touchmove', (e) => {
   const walk = (x - startX) * 2;
   scrollContainer.scrollLeft = scrollLeft - walk;
 });
+
+
+
+
+
+
+
+const track = document.querySelector(".sponsor-track");
+let direction = 1; // 1 = left → right, -1 = right → left
+
+function slideSponsors() {
+  const slider = document.querySelector(".sponsors-slider");
+  const maxScroll = track.scrollWidth - slider.clientWidth;
+
+  let currentX = getTranslateX(track);
+
+  if (direction === 1) {
+    // slide left → right
+    track.style.transform = `translateX(-${maxScroll}px)`;
+    direction = -1;
+  } else {
+    // slide right → left
+    track.style.transform = `translateX(0px)`;
+    direction = 1;
+  }
+
+  // wait for transition + 3s hold
+  setTimeout(slideSponsors, 2000 + 3000);
+}
+
+// helper: get current translateX
+function getTranslateX(el) {
+  const style = window.getComputedStyle(el);
+  const matrix = new WebKitCSSMatrix(style.transform);
+  return matrix.m41;
+}
+
+// start loop
+setTimeout(slideSponsors, 3000);
