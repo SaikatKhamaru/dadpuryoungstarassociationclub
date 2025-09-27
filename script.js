@@ -707,36 +707,46 @@ scrollContainer.addEventListener('touchmove', (e) => {
 
 
 
-const track = document.querySelector(".sponsor-track");
-let direction = 1; // 1 = left → right, -1 = right → left
 
-function slideSponsors() {
+document.addEventListener("DOMContentLoaded", () => {
+  const track = document.querySelector(".sponsor-track");
   const slider = document.querySelector(".sponsors-slider");
+
+  if (!track || !slider) return;
+
+  let position = 0;
+  let direction = 1;
+  const speed = 1; // pixels per frame
+  const holdTime = 3000; // hold duration in ms
+
   const maxScroll = track.scrollWidth - slider.clientWidth;
 
-  let currentX = getTranslateX(track);
+  function slide() {
+    if (maxScroll <= 0) return; // No scroll needed
 
-  if (direction === 1) {
-    // slide left → right
-    track.style.transform = `translateX(-${maxScroll}px)`;
-    direction = -1;
-  } else {
-    // slide right → left
-    track.style.transform = `translateX(0px)`;
-    direction = 1;
+    position += direction * speed;
+
+    if (position >= maxScroll) {
+      position = maxScroll;
+      holdPause(() => (direction = -1));
+    } else if (position <= 0) {
+      position = 0;
+      holdPause(() => (direction = 1));
+    } else {
+      track.style.transform = `translateX(-${position}px)`;
+      requestAnimationFrame(slide);
+    }
   }
 
-  // wait for transition + 3s hold
-  setTimeout(slideSponsors, 2000 + 3000);
-}
+  function holdPause(callback) {
+    setTimeout(() => {
+      callback();
+      requestAnimationFrame(slide);
+    }, holdTime);
+  }
 
-// helper: get current translateX
-function getTranslateX(el) {
-  const style = window.getComputedStyle(el);
-  const matrix = new WebKitCSSMatrix(style.transform);
-  return matrix.m41;
-}
+  slide();
+});
 
-// start loop
-setTimeout(slideSponsors, 3000);
+
 
