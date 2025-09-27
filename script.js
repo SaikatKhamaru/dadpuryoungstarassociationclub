@@ -602,51 +602,51 @@ showArtists('2k24');
 
 // slideCarousel();
 
-const pastMembers = document.getElementById("past-members");
-let flowerInterval;
+// const pastMembers = document.getElementById("past-members");
+// let flowerInterval;
 
-// create a flower
-function createFlower() {
-  const flower = document.createElement("img");
-  flower.src = "image/wf.png"; // your flower image
-  flower.classList.add("flower");
+// // create a flower
+// function createFlower() {
+//   const flower = document.createElement("img");
+//   flower.src = "image/wf.png"; // your flower image
+//   flower.classList.add("flower");
 
-  // random horizontal position within section
-  const sectionWidth = pastMembers.offsetWidth;
-  flower.style.left = Math.random() * sectionWidth + "px";
+//   // random horizontal position within section
+//   const sectionWidth = pastMembers.offsetWidth;
+//   flower.style.left = Math.random() * sectionWidth + "px";
 
-  // random size
-  const size = 20 + Math.random() * 40;
-  flower.style.width = size + "px";
-  flower.style.height = size + "px";
+//   // random size
+//   const size = 20 + Math.random() * 40;
+//   flower.style.width = size + "px";
+//   flower.style.height = size + "px";
 
-  // random fall speed
-  const duration = 5 + Math.random() * 5;
-  flower.style.animationDuration = duration + "s";
+//   // random fall speed
+//   const duration = 5 + Math.random() * 5;
+//   flower.style.animationDuration = duration + "s";
 
-  pastMembers.appendChild(flower);
+//   pastMembers.appendChild(flower);
 
-  // remove flower after animation ends
-  setTimeout(() => flower.remove(), duration * 1000);
-}
+//   // remove flower after animation ends
+//   setTimeout(() => flower.remove(), duration * 1000);
+// }
 
-// use IntersectionObserver to detect when section is visible
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      // start flowers
-      if (!flowerInterval) {
-        flowerInterval = setInterval(createFlower, 500);
-      }
-    } else {
-      // stop flowers when not visible
-      clearInterval(flowerInterval);
-      flowerInterval = null;
-    }
-  });
-}, { threshold: 0.1 });
+// // use IntersectionObserver to detect when section is visible
+// const observer = new IntersectionObserver((entries) => {
+//   entries.forEach(entry => {
+//     if (entry.isIntersecting) {
+//       // start flowers
+//       if (!flowerInterval) {
+//         flowerInterval = setInterval(createFlower, 500);
+//       }
+//     } else {
+//       // stop flowers when not visible
+//       clearInterval(flowerInterval);
+//       flowerInterval = null;
+//     }
+//   });
+// }, { threshold: 0.1 });
 
-observer.observe(pastMembers);
+// observer.observe(pastMembers);
 
 
 
@@ -739,3 +739,4 @@ function getTranslateX(el) {
 
 // start loop
 setTimeout(slideSponsors, 3000);
+
