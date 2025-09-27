@@ -706,8 +706,6 @@ scrollContainer.addEventListener('touchmove', (e) => {
 
 
 
-
-
 document.addEventListener("DOMContentLoaded", () => {
   const track = document.querySelector(".sponsor-track");
   const slider = document.querySelector(".sponsors-slider");
@@ -747,6 +745,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   slide();
 });
-
-
 
